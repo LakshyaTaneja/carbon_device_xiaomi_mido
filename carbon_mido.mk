@@ -14,10 +14,22 @@
 # limitations under the License.
 #
 
-$(call inherit-product, device/xiaomi/mido/full_mido.mk)
+# Provide meaningful APN configuration
+PRODUCT_COPY_FILES := device/leeco/s2/configs/apns-full-conf.xml:system/etc/apns-conf.xml
 
-# Inherit some common LineageOS stuff.
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+# Inherit from the common Open Source product configuration
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
+
+# Inherit some common CARBON stuff.
+$(call inherit-product, vendor/carbon/config/common.mk)
+
+# Inherit Carbon GSM telephony parts
+$(call inherit-product, vendor/carbon/config/gsm.mk)
+
+$(call inherit-product, device/xiaomi/mido/device.mk)
+
+$(call inherit-product-if-exists, vendor/xiaomi/mido/mido-vendor.mk)
 
 PRODUCT_NAME := lineage_mido
 BOARD_VENDOR := Xiaomi
@@ -27,3 +39,7 @@ PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 PRODUCT_BUILD_PROP_OVERRIDES += \
     BUILD_FINGERPRINT="xiaomi/mido/mido:6.0.1/MMB29M/V8.2.4.0.MCFMIDL:user/release-keys" \
     PRIVATE_BUILD_DESC="mido-user 6.0.1 MMB29M V8.2.4.0.MCFMIDL release-keys"
+
+# Maintainer
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.carbon.maintainer="Lakku"
