@@ -15,7 +15,7 @@
 #
 
 # Provide meaningful APN configuration
-PRODUCT_COPY_FILES := device/leeco/s2/configs/apns-full-conf.xml:system/etc/apns-conf.xml
+PRODUCT_COPY_FILES := device/xiaomi/mido/configs/apns-full-conf.xml:system/etc/apns-conf.xml
 
 # Inherit from the common Open Source product configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
@@ -31,7 +31,12 @@ $(call inherit-product, device/xiaomi/mido/device.mk)
 
 $(call inherit-product-if-exists, vendor/xiaomi/mido/mido-vendor.mk)
 
-PRODUCT_NAME := lineage_mido
+TARGET_VENDOR := Xiaomi
+PRODUCT_DEVICE := mido
+PRODUCT_BRAND := Xiaomi
+PRODUCT_MODEL := Redmi Note 4
+PRODUCT_MANUFACTURER := Xiaomi
+PRODUCT_NAME := carbon_mido
 BOARD_VENDOR := Xiaomi
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
